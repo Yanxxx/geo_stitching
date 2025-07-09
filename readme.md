@@ -85,6 +85,7 @@ python src/process_pipeline.py --project_name [您的项目名称]
 示例:
 ``````
 python src/process_pipeline.py --project_name project_1_paddy_field
+```
 
 该脚本会自动读取配置文件，找到数据，并执行所有处理步骤。处理完成后，拼接好的 stitched_georeferenced.tif 文件会出现在 output/project_1_paddy_field 目录中。
 
@@ -92,13 +93,17 @@ python src/process_pipeline.py --project_name project_1_paddy_field
 最后，运行 visualize_map.py 来为处理好的GeoTIFF创建一个HTML地图。
 
 命令格式:
+
 ```
 python src/visualize_map.py --project_name [您的项目名称]
 ```
+
 示例:
+
 ```
 python src/visualize_map.py --project_name project_1_paddy_field
 ```
+
 执行后，field_map.html 文件会出现在 output/project_1_paddy_field 目录中。在您的浏览器中打开此文件即可查看结果。
 
 飞行日志CSV格式要求
