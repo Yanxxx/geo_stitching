@@ -82,8 +82,10 @@ python src/manage_data.py init --project_name project_1_paddy_field
 ```
 python src/process_pipeline.py --project_name [您的项目名称]
 ```
+
 示例:
-``````
+
+```
 python src/process_pipeline.py --project_name project_1_paddy_field
 ```
 
