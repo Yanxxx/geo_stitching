@@ -13,6 +13,7 @@
 ## 项目结构
 
 
+```
 /UAV-GIS-Pipeline
 |
 |-- data/                     # 存放所有原始数据
@@ -33,6 +34,7 @@
 |   |-- visualize_map.py      # 地图可视化脚本
 |
 |-- README.md                 # 本文档
+```
 
 
 ## 安装依赖
