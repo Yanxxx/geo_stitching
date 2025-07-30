@@ -46,7 +46,7 @@
 pip install opencv-python opencv-contrib-python numpy pandas pyyaml gdal rasterio folium pillow
 ```
 
-2. 安装GDAL的注意事项:
+**2. 安装GDAL的注意事项:**
 GDAL 的安装可能因操作系统而异，直接使用pip可能会失败。推荐使用Conda进行安装：
 ```
 conda install -c conda-forge gdal
