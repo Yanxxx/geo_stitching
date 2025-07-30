@@ -1,4 +1,4 @@
-# 无人机拍摄图像拼接 (UAV Image Stitching & GIS Pipeline)
+# 视频图像拼接 (UAV Image Stitching & GIS Pipeline)
 
 本项目是一个一站式的自动化处理，旨在将无人机采集的影像数据（包括RGB视频、多光谱和高光谱图像）处理成带有地理坐标的大型拼接正射影像（GeoTIFF），并生成可交互的Web地图进行可视化。
 
