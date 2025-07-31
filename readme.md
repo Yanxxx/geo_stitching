@@ -54,7 +54,7 @@ conda install -c conda-forge gdal
 如果您不使用Conda，请参考官方GDAL安装文档或使用系统的包管理器（如apt-get install libgdal-dev on Ubuntu）。
 
 使用方法
-第1步: 初始化项目并管理数据
+**第1步:** 初始化项目并管理数据
 使用 manage_data.py 脚本来创建一个新的数据项目。这会自动创建所需的文件夹结构和配置文件。
 
 命令格式:
@@ -77,7 +77,7 @@ python src/manage_data.py init --project_name project_1_paddy_field
 
 将飞行日志 .csv 文件放入 flight_logs 目录。
 
-第2步: 运行核心处理管道
+**第2步:** 运行核心处理管道
 当数据准备好后，运行 process_pipeline.py 来生成拼接好的GeoTIFF地图。
 
 命令格式:
@@ -93,7 +93,7 @@ python src/process_pipeline.py --project_name project_1_paddy_field
 
 该脚本会自动读取配置文件，找到数据，并执行所有处理步骤。处理完成后，拼接好的 stitched_georeferenced.tif 文件会出现在 output/project_1_paddy_field 目录中。
 
-第3步: 生成并查看交互式地图
+**第3步:** 生成并查看交互式地图
 最后，运行 visualize_map.py 来为处理好的GeoTIFF创建一个HTML地图。
 
 命令格式:
