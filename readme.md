@@ -115,9 +115,9 @@ python src/visualize_map.py --project_name project_1_paddy_field
 
 timestamp_ms: 视频或图像采集的UTC时间戳（毫秒）。
 
-latitude: WGS-84 纬度。
+latitude: WGS-84 纬度,
 
-longitude: WGS-84 经度。
+longitude: WGS-84 经度,
 
 altitude_m: 海拔高度（米）。
 
