@@ -54,6 +54,7 @@ conda install -c conda-forge gdal
 如果您不使用Conda，请参考官方GDAL安装文档或使用系统的包管理器（如apt-get install libgdal-dev on Ubuntu）。
 
 使用方法
+
 **第1步:** 初始化项目并管理数据
 使用 manage_data.py 脚本来创建一个新的数据项目。这会自动创建所需的文件夹结构和配置文件。
 
