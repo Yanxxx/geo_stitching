@@ -1,132 +1,136 @@
-# 视频图像拼接 (UAV Image Stitching & GIS Pipeline)
+# UAV Image Stitching & GIS Pipeline
+This project provides a one-stop, automated pipeline for processing aerial imagery data collected by UAVs (including RGB video, multispectral, and hyperspectral images) into a large-scale, georeferenced orthomosaic (GeoTIFF), and generating an interactive web map for visualization.
 
-本项目是一个一站式的自动化处理，旨在将无人机采集的影像数据（包括RGB视频、多光谱和高光谱图像）处理成带有地理坐标的大型拼接正射影像（GeoTIFF），并生成可交互的Web地图进行可视化。
+## Key Features
+Multi-Source Data Management: Initialize new projects and manage various data sources with simple commands.
 
-## 主要功能
+Automated Processing: Execute the entire workflow—from video/image frame extraction to image stitching and georeferencing—with a single command.
 
-- **多数据源管理**: 通过简单的命令即可初始化新项目，管理不同类型的数据源。
-- **自动化处理**: 一键式脚本执行从视频/图像帧提取、图像拼接、到地理配准的全过程。
-- **多光谱/高光谱支持**: 能够处理多波段数据，在保留完整光谱信息的同时完成拼接和地理配准。
-- **GIS可视化**: 生成一个独立的HTML交互式地图，将处理后的影像叠加在标准地图上，并显示飞行轨迹。
-- **模块化设计**: 清晰分离了数据管理、核心处理和可视化的逻辑，易于扩展和维护。
+Multispectral/Hyperspectral Support: Capable of processing multi-band data, ensuring complete spectral information is preserved throughout the stitching and georeferencing process.
 
-## 项目结构
+GIS Visualization: Generates a standalone, interactive HTML map that overlays the processed imagery onto a standard map layer and displays the flight path.
 
+Modular Design: Features a clean separation of logic for data management, core processing, and visualization, facilitating easy extension and maintenance.
+
+### Project Structure
 
 ```
 /UAV-GIS-Pipeline
 |
-|-- data/                     # 存放所有原始数据
-|   |-- [project_name]/       # 每个项目一个文件夹
-|   |   |-- rgb_video/        # 存放RGB视频
-|   |   |-- multispectral/    # 存放多光谱图像
-|   |   |-- flight_logs/      # 存放飞行日志 (CSV)
-|   |   |-- project_config.yaml # 项目配置文件
+|-- data/                  # Stores all raw data
+|   |-- [project_name]/      # A dedicated folder for each project
+|   |   |-- rgb_video/       # Stores RGB videos
+|   |   |-- multispectral/   # Stores multispectral images
+|   |   |-- flight_logs/     # Stores flight logs (CSV)
+|   |   |-- project_config.yaml # Project configuration file
 |
-|-- output/                   # 存放所有处理结果
+|-- output/                # Stores all processing results
 |   |-- [project_name]/
 |   |   |-- stitched_georeferenced.tif
 |   |   |-- field_map.html
 |
-|-- src/                      # 存放所有源代码
-|   |-- manage_data.py        # 数据管理脚本
-|   |-- process_pipeline.py   # 核心处理管道
-|   |-- visualize_map.py      # 地图可视化脚本
+|-- src/                   # Stores all source code
+|   |-- manage_data.py       # Data management script
+|   |-- process_pipeline.py  # Core processing pipeline
+|   |-- visualize_map.py     # Map visualization script
 |
-|-- README.md                 # 本文档
+|-- README.md              # This document
 ```
 
+## Installation
+This project requires Python 3.8+. It is recommended to use a virtual environment.
 
-## 安装依赖
+1. Install Core Libraries:
 
-本项目使用Python 3.8+。推荐在虚拟环境中使用。
+Bash
 
-**1. 安装核心库:**
-```bash
 pip install opencv-python opencv-contrib-python numpy pandas pyyaml gdal rasterio folium pillow
-```
+2. Note on GDAL Installation:
+The installation of GDAL can vary significantly between operating systems, and a direct pip install may fail. It is highly recommended to install it using Conda:
 
-**2. 安装GDAL的注意事项:**
-GDAL 的安装可能因操作系统而异，直接使用pip可能会失败。推荐使用Conda进行安装：
+Bash
 ```
 conda install -c conda-forge gdal
 ```
-如果您不使用Conda，请参考官方GDAL安装文档或使用系统的包管理器（如apt-get install libgdal-dev on Ubuntu）。
 
-使用方法
+If you do not use Conda, please refer to the official GDAL installation documentation or use your system's package manager (e.g., apt-get install libgdal-dev on Ubuntu).
 
-**第1步:** 初始化项目并管理数据
-使用 manage_data.py 脚本来创建一个新的数据项目。所需要的文件夹结构以及配置文件会自动创建。
+Usage
+Step 1: Initialize Project and Manage Data
+Use the manage_data.py script to create a new data project. The required folder structure and configuration file will be generated automatically.
 
-命令格式:
+Command Format:
+
+Bash
 ```
-python src/manage_data.py init --project_name [您的项目名称]
+python src/manage_data.py init --project_name [your_project_name]
 ```
+Example:
 
-示例:
+Bash
 ```
 python src/manage_data.py init --project_name project_1_paddy_field
 ```
 
-执行后，data/project_1_paddy_field 文件夹和其子目录将被创建。
+After execution, the data/project_1_paddy_field directory and its subdirectories will be created.
 
-然后，将您的数据文件放入对应的文件夹中:
+Next, place your data files into the corresponding folders:
 
-将无人机视频 .mp4 文件放入 rgb_video 目录。
+Place the UAV video .mp4 file into the rgb_video directory.
 
-将多光谱/高光谱 .tif 文件放入 multispectral 目录。
+Place the multispectral/hyperspectral .tif files into the multispectral directory.
 
-将飞行日志 .csv 文件放入 flight_logs 目录。
+Place the flight log .csv file into the flight_logs directory.
 
-**第2步:** 运行核心处理管道
-当数据准备好后，运行 process_pipeline.py 来生成拼接好的GeoTIFF地图。
+Step 2: Run the Core Processing Pipeline
+Once the data is in place, run process_pipeline.py to generate the stitched GeoTIFF map.
 
-命令格式:
-```
-python src/process_pipeline.py --project_name [您的项目名称]
-```
+Command Format:
 
-示例:
+Bash
 
-```
+python src/process_pipeline.py --project_name [your_project_name]
+Example:
+
+Bash
+
 python src/process_pipeline.py --project_name project_1_paddy_field
+The script will automatically read the configuration file, locate the data, and execute all processing steps. Upon completion, the stitched_georeferenced.tif file will be available in the output/project_1_paddy_field directory.
+
+Step 3: Generate and View the Interactive Map
+Finally, run visualize_map.py to create an HTML map for the processed GeoTIFF.
+
+Command Format:
+
+Bash
 ```
-
-该脚本会自动读取配置文件，找到数据，并执行所有处理步骤。处理完成后，拼接好的 stitched_georeferenced.tif 文件会出现在 output/project_1_paddy_field 目录中。
-
-**第3步:** 生成并查看交互式地图
-最后，运行 visualize_map.py 来为处理好的GeoTIFF创建一个HTML地图。
-
-命令格式:
-
+python src/visualize_map.py --project_name [your_project_name]
 ```
-python src/visualize_map.py --project_name [您的项目名称]
-```
+Example:
 
-示例:
-
+Bash
 ```
 python src/visualize_map.py --project_name project_1_paddy_field
 ```
 
-执行后，field_map.html 文件会出现在 output/project_1_paddy_field 目录中。在您的浏览器中打开此文件即可查看结果。
+After execution, the field_map.html file will appear in the output/project_1_paddy_field directory. Open this file in your browser to view the result.
 
-飞行日志CSV格式要求
-飞行日志文件 (.csv) 必须包含以下列名：
+Flight Log CSV Format Requirements
+The flight log file (.csv) must contain the following column headers:
 
-timestamp_ms: 视频或图像采集的UTC时间戳（毫秒）。
+timestamp_ms: UTC timestamp in milliseconds when the video frame or image was captured.
 
-latitude: WGS-84 纬度,
+latitude: WGS-84 latitude.
 
-longitude: WGS-84 经度,
+longitude: WGS-84 longitude.
 
-altitude_m: 海拔高度（米）。
+altitude_m: Altitude above sea level in meters.
 
-示例:
+Example:
+
 ```
 timestamp_ms,latitude,longitude,altitude_m
 1672531200000,37.386051,-122.083855,50
 1672531205000,37.386151,-122.083855,50
-```
 ...
-
+```
