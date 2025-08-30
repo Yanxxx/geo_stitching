@@ -43,8 +43,10 @@ This project requires Python 3.8+. It is recommended to use a virtual environmen
 1. Install Core Libraries:
 
 Bash
-
+```
 pip install opencv-python opencv-contrib-python numpy pandas pyyaml gdal rasterio folium pillow
+```
+
 2. Note on GDAL Installation:
 The installation of GDAL can vary significantly between operating systems, and a direct pip install may fail. It is highly recommended to install it using Conda:
 
