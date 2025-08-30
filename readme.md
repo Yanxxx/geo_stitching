@@ -90,13 +90,15 @@ Once the data is in place, run process_pipeline.py to generate the stitched GeoT
 Command Format:
 
 Bash
-
+```
 python src/process_pipeline.py --project_name [your_project_name]
+```
 Example:
 
 Bash
-
+```
 python src/process_pipeline.py --project_name project_1_paddy_field
+```
 The script will automatically read the configuration file, locate the data, and execute all processing steps. Upon completion, the stitched_georeferenced.tif file will be available in the output/project_1_paddy_field directory.
 
 Step 3: Generate and View the Interactive Map
