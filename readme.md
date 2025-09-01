@@ -40,14 +40,14 @@ Modular Design: Features a clean separation of logic for data management, core p
 ## Installation
 This project requires Python 3.8+. It is recommended to use a virtual environment.
 
-1. Install Core Libraries:
+**1. Install Core Libraries:**
 
 Bash
 ```
 pip install opencv-python opencv-contrib-python numpy pandas pyyaml gdal rasterio folium pillow
 ```
 
-2. Note on GDAL Installation:
+**2. Note on GDAL Installation:**
 The installation of GDAL can vary significantly between operating systems, and a direct pip install may fail. It is highly recommended to install it using Conda:
 
 Bash
@@ -58,7 +58,7 @@ conda install -c conda-forge gdal
 If you do not use Conda, please refer to the official GDAL installation documentation or use your system's package manager (e.g., apt-get install libgdal-dev on Ubuntu).
 
 Usage
-Step 1: Initialize Project and Manage Data
+**Step 1: Initialize Project and Manage Data**
 Use the manage_data.py script to create a new data project. The required folder structure and configuration file will be generated automatically.
 
 Command Format:
@@ -84,7 +84,7 @@ Place the multispectral/hyperspectral .tif files into the multispectral director
 
 Place the flight log .csv file into the flight_logs directory.
 
-Step 2: Run the Core Processing Pipeline
+**Step 2: Run the Core Processing Pipeline**
 Once the data is in place, run process_pipeline.py to generate the stitched GeoTIFF map.
 
 Command Format:
@@ -101,7 +101,7 @@ python src/process_pipeline.py --project_name project_1_paddy_field
 ```
 The script will automatically read the configuration file, locate the data, and execute all processing steps. Upon completion, the stitched_georeferenced.tif file will be available in the output/project_1_paddy_field directory.
 
-Step 3: Generate and View the Interactive Map
+**Step 3: Generate and View the Interactive Map**
 Finally, run visualize_map.py to create an HTML map for the processed GeoTIFF.
 
 Command Format:
