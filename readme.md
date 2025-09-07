@@ -3,7 +3,6 @@
 
 ![Python Version](https://img.shields.io/badge/Python-3.8+-blue)
 ![Platform](https://img.shields.io/badge/Ubuntu-24.04-orange)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 
 This project provides a one-stop, automated pipeline for processing aerial imagery data collected by UAVs (including RGB video, multispectral, and hyperspectral images) into a large-scale, georeferenced orthomosaic (GeoTIFF), and generating an interactive web map for visualization.
